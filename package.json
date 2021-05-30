@@ -1,0 +1,12 @@
+{
+  "name": "popularrepos",
+  "version": "1.0.0",
+  "description": "Simple Transcript Application to fetch most popular repo based on count of Fork",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node output/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

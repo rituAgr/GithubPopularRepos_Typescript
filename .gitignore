@@ -1,0 +1,5 @@
+.idea
+.idea/*
+
+*.js
+node_modules/
