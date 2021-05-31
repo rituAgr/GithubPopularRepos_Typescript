@@ -1,22 +1,28 @@
 import * as request from 'request';
 import {User} from './User';
+import {Repo} from './Repo';
 
-export class GithubApiService {
-
-  getUserInfo(userName: string){
-  let options: any = {
+const OPTIONS: any = {
    headers: {
    'User-Agent': 'request'
-   }
+   },
+   'json': true
   }
-  request.get("https://api.github.com/users/"+userName, options, (error:any, response:any, body:any)=>{
-  let user = new User(JSON.parse(body));
-  console.log(user);
+export class GithubApiService {
+
+  getUserInfo(userName: string, cb: (user: User) => any){
+  request.get("https://api.github.com/users/"+userName, OPTIONS, (error:any, response:any, body:any)=>{
+  let user = new User(body);
+  cb(user);
   })
-
   }
 
-  getRepoInfo(){
+  getRepoInfo(userName: string, cb: (repos: Repo[]) => any ){
+  request.get("https://api.github.com/users/"+userName+"/repos", OPTIONS, (error:any, response:any, body:any)=>{
+    let ResponseRepos = body.map((repo:any) => new Repo(repo));
+    cb(ResponseRepos);
 
-  }
+  })
+}
+
 }

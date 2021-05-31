@@ -5,7 +5,11 @@ export class Repo {
  size?: number;
  forkCount?: number;
 
- constructor(){
-
+ constructor(userRepo: any){
+   this.name = userRepo.name;
+   this.description = userRepo.description;
+   this.url = userRepo.userRepos_url;
+   this.size = userRepo.size;
+   this.forkCount = userRepo.forks;
  }
 }
